@@ -6,7 +6,7 @@ for (let i = 1; i <= 20; i++) {
   numbers.push(i);
 }
 
-let FizzBuzz = (numbers) => {
+const fizzBuzz = (numbers) => {
   numbers.forEach((number) => {
     if (number % 15 === 0) return console.log("FizzBuzz");
     if (number % 3 === 0) return console.log("Fizz");
@@ -15,4 +15,4 @@ let FizzBuzz = (numbers) => {
   });
 };
 
-FizzBuzz(numbers);
+fizzBuzz(numbers);
