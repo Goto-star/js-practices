@@ -8,10 +8,15 @@ const fizzBuzz = () => {
   }
 
   numbers.forEach((number) => {
-    if (number % 15 === 0) return console.log("FizzBuzz");
-    if (number % 3 === 0) return console.log("Fizz");
-    if (number % 5 === 0) return console.log("Buzz");
-    return console.log(number);
+    if (number % 3 === 0 && number % 5 === 0) {
+      console.log("FizzBuzz");
+    } else if (number % 3 === 0) {
+      console.log("Fizz");
+    } else if (number % 5 === 0) {
+      console.log("Buzz");
+    } else {
+      console.log(number);
+    }
   });
 };
 
