@@ -12,7 +12,6 @@ const argv = minimist(process.argv.slice(2), {
 const now = DateTime.now();
 const year = argv.year || now.year;
 const month = argv.month || now.month;
-
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
 const calProgram = () => {
@@ -33,7 +32,6 @@ const displayAllDatesInMonth = () => {
     }
     return dateStr;
   });
-
   return formatted_dates.join("");
 };
 
