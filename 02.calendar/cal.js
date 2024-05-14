@@ -9,16 +9,20 @@ const argv = minimist(process.argv.slice(2), {
   },
 });
 
+const now = DateTime.now();
+const year = argv.year || now.year;
+const month = argv.month || now.month;
+
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
 const calProgram = () => {
-  console.log(`      ${argv.month}月 ${argv.year}`);
+  console.log(`      ${month}月 ${year}`);
   console.log(`${days.join(" ")}`);
   console.log(displayAllDatesInMonth());
 };
 
 const displayAllDatesInMonth = () => {
-  const dates = getAllDatesInMonth(argv.year, argv.month);
+  const dates = getAllDatesInMonth(year, month);
   const blank = "   ".repeat(dates[0].weekday);
 
   const formatted_dates = dates.map((date) => {
