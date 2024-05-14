@@ -37,7 +37,7 @@ const displayAllDatesInMonth = () => {
   return formatted_dates.join("");
 };
 
-const getAllDatesInMonth = (year, month) => {
+const getAllDatesInMonth = () => {
   let dates = [];
   let date = DateTime.local(year, month, 1);
 
