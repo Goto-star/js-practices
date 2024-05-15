@@ -3,7 +3,7 @@ import sqlite3 from "sqlite3";
 const { Database } = sqlite3;
 const db = new Database(":memory:");
 
-// エラーありのプログラム
+// エラーありのプログラム(コールバック)
 db.run(
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   () => {
