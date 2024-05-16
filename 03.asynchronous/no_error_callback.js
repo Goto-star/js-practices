@@ -21,14 +21,10 @@ const insertRecord = () => {
 
 // レコードの取得
 const getRecord = (id) => {
-  db.get(
-    "SELECT id, title FROM books WHERE id = ?",
-    [id],
-    function (error, row) {
-      console.log(`ID = ${row.id}, Title = ${row.title}`);
-      deleteTable();
-    },
-  );
+  db.get("SELECT id, title FROM books WHERE id = ?", [id], function (_, row) {
+    console.log(`ID = ${row.id}, Title = ${row.title}`);
+    deleteTable();
+  });
 };
 
 // レコードの削除
