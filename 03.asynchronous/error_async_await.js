@@ -1,4 +1,4 @@
-import { run, get } from "./async_await_method_module.js";
+import { run, get, errorHandling } from "./async_await_method_module.js";
 import sqlite3 from "sqlite3";
 const { Database } = sqlite3;
 const db = new Database(":memory:");
@@ -15,7 +15,7 @@ const main = async () => {
     lastID = await run(db, "INSERT INTO book (title) VALUES (?)", ["Book1"]);
     console.log(`${lastID}`);
   } catch (err) {
-    console.log(`${err.message}`);
+    errorHandling(err);
   }
 
   let row;
@@ -23,7 +23,7 @@ const main = async () => {
     row = await get(db, "SELECT id, title FROM books");
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
-    console.log(`${err.message}`);
+    errorHandling(err);
   }
 
   await run(db, "DROP TABLE books");

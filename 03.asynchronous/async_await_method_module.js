@@ -22,4 +22,8 @@ const get = async (db, stmt, params = []) => {
   });
 };
 
-export { run, get };
+const errorHandling = async (err) => {
+  console.error(`${err.message}`);
+};
+
+export { run, get, errorHandling };

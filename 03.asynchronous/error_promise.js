@@ -1,4 +1,4 @@
-import { run, get } from "./promise_method_module.js";
+import { run, get, errorHandling } from "./promise_method_module.js";
 import sqlite3 from "sqlite3";
 const { Database } = sqlite3;
 const db = new Database(":memory:");
@@ -13,7 +13,7 @@ run(
     console.log(`${lastID}`);
   })
   .catch((err) => {
-    console.error(err.message);
+    errorHandling(err);
     return Promise.resolve();
   })
   .then(() => {
@@ -23,7 +23,7 @@ run(
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   })
   .catch((err) => {
-    console.error(err.message);
+    errorHandling(err);
     return Promise.resolve();
   })
   .then(() => run(db, "DROP TABLE books"));
