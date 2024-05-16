@@ -1,4 +1,4 @@
-import { run, get } from "./method_module.js";
+import { run, get } from "./promise_method_module.js";
 import sqlite3 from "sqlite3";
 const { Database } = sqlite3;
 const db = new Database(":memory:");
