@@ -11,12 +11,19 @@ run(
   .then(() => run(db, "INSERT INTO books (title) VALUES (?)", ["Book1"]))
   .then((lastID) => {
     console.log(`${lastID}`);
-    return get(db, "SELECT id, title FROM book WHERE id = ?", [lastID]);
+  })
+  .catch((err) => {
+    console.error(err.message);
+    return Promise.resolve();
+  })
+  .then(() => {
+    return get(db, "SELECT id, title FROM books");
   })
   .then((row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   })
-  .then(() => run(db, "DROP TABLE books"))
   .catch((err) => {
     console.error(err.message);
-  });
+    return Promise.resolve();
+  })
+  .then(() => run(db, "DROP TABLE books"));

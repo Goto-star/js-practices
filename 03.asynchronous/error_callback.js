@@ -13,19 +13,23 @@ db.run(
 
 // レコードの挿入
 const insertRecord = () => {
-  db.run("INSERT INTO books (title) VALUES (?)", "Book1", function () {
-    console.log(`${this.lastID}`);
-    getRecord(this.lastID);
+  db.run("INSERT INTO book (title) VALUES (?)", "Book1", function (err) {
+    if (err) {
+      console.error(err.message);
+    } else {
+      console.log(`${this.lastID}`);
+    }
+    getRecord();
   });
 };
 
 // レコードの取得
-const getRecord = (id) => {
-  db.get("SELECT id, title FROM book", [id], function (err, row) {
+const getRecord = () => {
+  db.get("SELECT id, title FROM books", function (err, row) {
     if (err) {
       console.error(err.message);
-    } else if (row) {
-      console.error(err.message);
+    } else {
+      console.log(`ID = ${row.id}, Title = ${row.title}`);
     }
     deleteTable();
   });
