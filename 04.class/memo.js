@@ -1,9 +1,12 @@
-import process from "process";
+import readline from "readline";
 
 class Memo {
+  constructor(db) {
+    this.db = db;
+  }
+
   async run() {
     const args = process.argv.slice(2);
-
     // switch文に修正
     if (args.length === 0) {
       this.addMemo();
@@ -19,7 +22,23 @@ class Memo {
   }
 
   async addMemo() {
-    console.log("add");
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    const lines = [];
+    rl.on("line", (input) => {
+      lines.push(input);
+    });
+
+    rl.on("close", async () => {
+      if (lines) {
+        await this.db.insertMemo(lines);
+      } else {
+        console.log("メモが空です");
+      }
+    });
   }
 
   async listMemos() {
