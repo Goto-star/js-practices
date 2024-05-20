@@ -31,6 +31,10 @@ class MemoDatabase {
   async getMemo(id) {
     return await this.db.get("SELECT content FROM memos WHERE id = ?", [id]);
   }
+
+  async deleteMemo(id) {
+    await this.db.run("DELETE FROM memos WHERE id = ?", id);
+  }
 }
 
 export default MemoDatabase;

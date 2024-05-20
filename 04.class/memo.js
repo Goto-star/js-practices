@@ -71,7 +71,22 @@ class Memo {
   }
 
   async deleteMemo() {
-    console.log("delete");
+    const memos = await this.db.getAllMemos();
+    const choices = memos.map((memo) => ({
+      name: memo.content.split("\n")[0],
+      value: memo.id,
+    }));
+
+    const answer = await inquirer.prompt([
+      {
+        type: "list",
+        name: "selectDeleteMemoId",
+        message: "Choose a memo you want to delete:",
+        choices: choices,
+      },
+    ]);
+
+    await this.db.deleteMemo(answer.selectDeleteMemoId);
   }
 }
 
