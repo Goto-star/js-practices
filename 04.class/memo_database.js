@@ -27,6 +27,10 @@ class MemoDatabase {
   async getAllMemos() {
     return await this.db.all("SELECT id, content FROM memos");
   }
+
+  async getMemo(id) {
+    return await this.db.get("SELECT content FROM memos WHERE id = ?", [id]);
+  }
 }
 
 export default MemoDatabase;

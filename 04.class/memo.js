@@ -1,4 +1,5 @@
 import readline from "readline";
+import inquirer from "inquirer";
 
 class Memo {
   constructor(db) {
@@ -50,7 +51,23 @@ class Memo {
   }
 
   async readMemo() {
-    console.log("read");
+    const memos = await this.db.getAllMemos();
+    const choices = memos.map((memo) => ({
+      name: memo.content.split("\n")[0],
+      value: memo.id,
+    }));
+
+    const answer = await inquirer.prompt([
+      {
+        type: "list",
+        name: "selectedMemoId",
+        message: "Choose a note you want to see:",
+        choices: choices,
+      },
+    ]);
+
+    const fullMemo = await this.db.getMemo(answer.selectedMemoId);
+    console.log(`${fullMemo.content}`);
   }
 
   async deleteMemo() {
