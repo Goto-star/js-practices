@@ -33,8 +33,9 @@ class Memo {
     });
 
     rl.on("close", async () => {
-      if (lines) {
-        await this.db.insertMemo(lines);
+      const content = lines.join("\n");
+      if (content) {
+        await this.db.insertMemo(content);
       } else {
         console.log("メモが空です");
       }
@@ -42,7 +43,10 @@ class Memo {
   }
 
   async listMemos() {
-    console.log("list");
+    const memos = await this.db.getAllMemos();
+    memos.forEach((memo) => {
+      console.log(`${memo.content.split("\n")[0]}`);
+    });
   }
 
   async readMemo() {

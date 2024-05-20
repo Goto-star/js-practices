@@ -19,8 +19,13 @@ class MemoDatabase {
       )
     `);
   }
+
   async insertMemo(content) {
     await this.db.run("INSERT INTO memos (content) VALUES (?)", content);
+  }
+
+  async getAllMemos() {
+    return await this.db.all("SELECT id, content FROM memos");
   }
 }
 
