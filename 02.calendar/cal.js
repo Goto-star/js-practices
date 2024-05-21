@@ -22,10 +22,10 @@ const calProgram = () => {
 
 const displayAllDatesInMonth = () => {
   const dates = getAllDatesInMonth(year, month);
-  const first_day_weekday = dates[0].weekday == 7 ? 0 : dates[0].weekday;
-  const blank = "   ".repeat(first_day_weekday);
+  const firstDayWeekday = dates[0].weekday == 7 ? 0 : dates[0].weekday;
+  const blank = "   ".repeat(firstDayWeekday);
 
-  const formatted_dates = dates.map((date) => {
+  const formattedDates = dates.map((date) => {
     let dateStr =
       `${date.day}`.padStart(2, " ") + (date.weekday === 6 ? "\n" : " ");
     if (dates[0] === date) {
@@ -33,7 +33,7 @@ const displayAllDatesInMonth = () => {
     }
     return dateStr;
   });
-  return formatted_dates.join("");
+  return formattedDates.join("");
 };
 
 const getAllDatesInMonth = () => {
