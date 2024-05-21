@@ -8,17 +8,23 @@ class Memo {
 
   async run() {
     const args = process.argv.slice(2);
-    // switch文に修正
+
     if (args.length === 0) {
       this.addMemo();
-    } else if (args[0] === "-l") {
-      this.listMemos();
-    } else if (args[0] === "-r") {
-      this.readMemo();
-    } else if (args[0] === "-d") {
-      this.deleteMemo();
-    } else {
-      console.log("不明なオプションです");
+      return;
+    }
+    switch (args[0]) {
+      case "-l":
+        this.listMemos();
+        break;
+      case "-r":
+        this.readMemo();
+        break;
+      case "-d":
+        this.deleteMemo();
+        break;
+      default:
+        console.log("不明なオプションです");
     }
   }
 
