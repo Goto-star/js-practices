@@ -24,6 +24,5 @@ run(
   })
   .catch((err) => {
     handleError(err);
-    return Promise.resolve();
   })
   .then(() => run(db, "DROP TABLE books"));
