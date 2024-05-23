@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-import { run, get, errorHandling } from "./sqlite_async_utils.js";
+import { run, get, handleError } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
@@ -18,14 +18,14 @@ const main = async () => {
     );
     console.log(insertResult.id);
   } catch (err) {
-    errorHandling(err);
+    handleError(err);
   }
 
   try {
     const row = await get(db, "SELECT id, title FROM books");
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
-    errorHandling(err);
+    handleError(err);
   }
 
   await run(db, "DROP TABLE books");

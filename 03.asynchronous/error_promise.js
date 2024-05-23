@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-import { run, get, errorHandling } from "./sqlite_async_utils.js";
+import { run, get, handleError } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
@@ -13,7 +13,7 @@ run(
     console.log(insertResult.id);
   })
   .catch((err) => {
-    errorHandling(err);
+    handleError(err);
     return Promise.resolve();
   })
   .then(() => {
@@ -23,7 +23,7 @@ run(
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   })
   .catch((err) => {
-    errorHandling(err);
+    handleError(err);
     return Promise.resolve();
   })
   .then(() => run(db, "DROP TABLE books"));
