@@ -4,7 +4,10 @@ const run = (db, stmt, params = []) => {
       if (err) {
         reject(err);
       } else {
-        resolve(this.lastID);
+        resolve({
+          id: this.lastID,
+          changes: this.changes,
+        });
       }
     });
   });

@@ -11,12 +11,12 @@ const main = async () => {
   );
 
   try {
-    const lastID = await run(
+    const insertResult = await run(
       db,
       "INSERT INTO books (title) VALUES (?)",
       "Book1",
     );
-    console.log(lastID);
+    console.log(insertResult.id);
   } catch (err) {
     errorHandling(err);
   }

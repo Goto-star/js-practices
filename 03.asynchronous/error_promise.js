@@ -9,8 +9,8 @@ run(
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
 )
   .then(() => run(db, "INSERT INTO books (title) VALUES (?)", "Book1"))
-  .then((lastID) => {
-    console.log(lastID);
+  .then((insertResult) => {
+    console.log(insertResult.id);
   })
   .catch((err) => {
     errorHandling(err);
