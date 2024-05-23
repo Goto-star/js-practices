@@ -23,7 +23,7 @@ const get = (db, stmt, params = []) => {
 };
 
 const errorHandling = (err) => {
-  console.error(`${err.message}`);
+  console.error(err.message);
 };
 
 export { run, get, errorHandling };

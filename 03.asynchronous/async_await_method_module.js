@@ -23,7 +23,7 @@ const get = async (db, stmt, params = []) => {
 };
 
 const errorHandling = async (err) => {
-  console.error(`${err.message}`);
+  console.error(err.message);
 };
 
 export { run, get, errorHandling };

@@ -10,7 +10,7 @@ run(
 )
   .then(() => run(db, "INSERT INTO books (title) VALUES (?)", ["Book1"]))
   .then((lastID) => {
-    console.log(`${lastID}`);
+    console.log(lastID);
   })
   .catch((err) => {
     errorHandling(err);

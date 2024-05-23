@@ -12,7 +12,7 @@ const main = async () => {
   const lastID = await run(db, "INSERT INTO books (title) VALUES (?)", [
     "Book1",
   ]);
-  console.log(`${lastID}`);
+  console.log(lastID);
   const row = await get(db, "SELECT id, title FROM books WHERE id = ?", [
     lastID,
   ]);

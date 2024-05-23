@@ -13,7 +13,7 @@ db.run(
 // レコードの挿入
 const insertRecord = () => {
   db.run("INSERT INTO books (title) VALUES (?)", "Book1", function () {
-    console.log(`${this.lastID}`);
+    console.log(this.lastID);
     getRecord(this.lastID);
   });
 };

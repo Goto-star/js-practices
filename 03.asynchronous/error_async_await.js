@@ -13,7 +13,7 @@ const main = async () => {
   let lastID;
   try {
     lastID = await run(db, "INSERT INTO books (title) VALUES (?)", ["Book1"]);
-    console.log(`${lastID}`);
+    console.log(lastID);
   } catch (err) {
     errorHandling(err);
   }
