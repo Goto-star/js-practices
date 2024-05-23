@@ -1,4 +1,4 @@
-const run = async (db, stmt, params = []) => {
+const run = (db, stmt, params = []) => {
   return new Promise((resolve, reject) => {
     db.run(stmt, params, function (err) {
       if (err) {
@@ -10,7 +10,7 @@ const run = async (db, stmt, params = []) => {
   });
 };
 
-const get = async (db, stmt, params = []) => {
+const get = (db, stmt, params = []) => {
   return new Promise((resolve, reject) => {
     db.get(stmt, params, function (err, row) {
       if (err) {
@@ -22,7 +22,7 @@ const get = async (db, stmt, params = []) => {
   });
 };
 
-const errorHandling = async (err) => {
+const errorHandling = (err) => {
   console.error(err.message);
 };
 
