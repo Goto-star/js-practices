@@ -12,20 +12,24 @@ db.run(
 
 // レコードの挿入
 const insertRecord = () => {
-  db.run("INSERT INTO book (title) VALUES (?)", "Book1", function (err) {
+  db.run("INSERT INTO books (title) VALUES (?)", "Book1", function (err) {
     if (err) {
       console.error(err.message);
+      return;
     }
+    console.log(this.lastID);
     getRecord();
   });
 };
 
 // レコードの取得
 const getRecord = () => {
-  db.get("SELECT id, title FROM book", function (err) {
+  db.get("SELECT id, title FROM books", function (err, row) {
     if (err) {
       console.error(err.message);
+      return;
     }
+    console.log(`ID = ${row.id}, Title = ${row.title}`);
     deleteTable();
   });
 };
