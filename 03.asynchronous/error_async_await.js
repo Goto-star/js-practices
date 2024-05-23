@@ -10,17 +10,19 @@ const main = async () => {
     "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
 
-  let lastID;
   try {
-    lastID = await run(db, "INSERT INTO books (title) VALUES (?)", "Book1");
+    const lastID = await run(
+      db,
+      "INSERT INTO books (title) VALUES (?)",
+      "Book1",
+    );
     console.log(lastID);
   } catch (err) {
     errorHandling(err);
   }
 
-  let row;
   try {
-    row = await get(db, "SELECT id, title FROM books");
+    const row = await get(db, "SELECT id, title FROM books");
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
     errorHandling(err);
