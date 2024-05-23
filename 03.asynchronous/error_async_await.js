@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-import { run, get, errorHandling } from "./async_await_method_module.js";
+import { run, get, errorHandling } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
