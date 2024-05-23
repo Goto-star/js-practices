@@ -20,7 +20,7 @@ const insertRecord = () => {
 
 // レコードの取得
 const getRecord = (id) => {
-  db.get("SELECT id, title FROM books WHERE id = ?", [id], function (_, row) {
+  db.get("SELECT id, title FROM books WHERE id = ?", id, (_, row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);
     deleteTable();
   });
