@@ -22,8 +22,8 @@ const calProgram = () => {
 
 const displayAllDatesInMonth = () => {
   const dates = getAllDatesInMonth(year, month);
-  const firstDayWeekday = dates[0].weekday == 7 ? 0 : dates[0].weekday;
-  const blank = "   ".repeat(firstDayWeekday);
+  const paddingSizeBeforeFirstDay = dates[0].weekday % 7;
+  const blank = "   ".repeat(paddingSizeBeforeFirstDay);
 
   const formattedDates = dates.map((date) => {
     let dateStr =
