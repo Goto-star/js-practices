@@ -6,20 +6,20 @@ const db = new sqlite3.Database(":memory:");
 db.run(
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   () => {
-    insertRecord();
+    insertAndGetRecord();
   },
 );
 
 // レコードの挿入
-const insertRecord = () => {
+const insertAndGetRecord = () => {
   db.run("INSERT INTO books (title) VALUES (?)", "Book1", function () {
     console.log(this.lastID);
-    getRecord(this.lastID);
+    getRecordAndDeleteTable(this.lastID);
   });
 };
 
 // レコードの取得
-const getRecord = (id) => {
+const getRecordAndDeleteTable = (id) => {
   db.get("SELECT id, title FROM books WHERE id = ?", id, (_, row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);
     deleteTable();
