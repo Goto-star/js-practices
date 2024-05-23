@@ -15,9 +15,9 @@ const insertRecord = () => {
   db.run("INSERT INTO books (title) VALUES (?)", "Book1", function (err) {
     if (err) {
       console.error(err.message);
-      return;
+    } else {
+      console.log(this.lastID);
     }
-    console.log(this.lastID);
     getRecord();
   });
 };
@@ -27,9 +27,9 @@ const getRecord = () => {
   db.get("SELECT id, title FROM books", function (err, row) {
     if (err) {
       console.error(err.message);
-      return;
+    } else {
+      console.log(`ID = ${row.id}, Title = ${row.title}`);
     }
-    console.log(`ID = ${row.id}, Title = ${row.title}`);
     deleteTable();
   });
 };
