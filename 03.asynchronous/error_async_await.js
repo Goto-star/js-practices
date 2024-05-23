@@ -16,16 +16,21 @@ const main = async () => {
       "INSERT INTO books (title) VALUES (?)",
       "Book1",
     );
+    await run(db, "INSERT INTO books (title) VALUES (?)", "Book1");
     console.log(insertResult.id);
   } catch (err) {
-    handleError(err);
+    if (err.message.includes("UNIQUE constraint failed")) {
+      handleError(err);
+    }
   }
 
   try {
-    const row = await get(db, "SELECT id, title FROM books");
+    const row = await get(db, "SELECT iid, title FROM books");
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
-    handleError(err);
+    if (err.message.includes("no such table")) {
+      handleError(err);
+    }
   }
 
   await run(db, "DROP TABLE books");
