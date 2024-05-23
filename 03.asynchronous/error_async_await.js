@@ -1,6 +1,7 @@
 import { run, get, errorHandling } from "./async_await_method_module.js";
 import sqlite3 from "sqlite3";
 const { Database } = sqlite3;
+
 const db = new Database(":memory:");
 
 // エラーありのプログラム(async/await)
