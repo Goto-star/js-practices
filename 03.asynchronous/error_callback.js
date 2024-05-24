@@ -12,7 +12,7 @@ db.run(
 
 // レコードの挿入
 const insertRecord = () => {
-  db.run("INSERT INTO books (title) VALUES (?)", "Book1", function (err) {
+  db.run("INSERT INTO book (title) VALUES (?)", "Book1", function (err) {
     if (err) {
       console.error(err.message);
     } else {
@@ -24,7 +24,7 @@ const insertRecord = () => {
 
 // レコードの取得
 const getRecord = () => {
-  db.get("SELECT id, title FROM books", function (err, row) {
+  db.get("SELECT iid, title FROM books", function (err, row) {
     if (err) {
       console.error(err.message);
     } else {
