@@ -25,8 +25,4 @@ const get = (db, stmt, params = []) => {
   });
 };
 
-const handleError = (err) => {
-  console.error(err.message);
-};
-
-export { run, get, handleError };
+export { run, get };

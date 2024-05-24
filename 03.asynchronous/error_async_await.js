@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-import { run, get, handleError } from "./sqlite_async_utils.js";
+import { run, get } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
@@ -19,7 +19,7 @@ const main = async () => {
     console.log(insertResult.id);
   } catch (err) {
     if (err.message.includes("UNIQUE constraint failed")) {
-      handleError(err);
+      console.log(err.message);
     }
   }
 
@@ -28,7 +28,7 @@ const main = async () => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
     if (err.message.includes("no such table")) {
-      handleError(err);
+      console.log(err.message);
     }
   }
 
