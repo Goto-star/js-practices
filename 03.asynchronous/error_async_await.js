@@ -3,7 +3,6 @@ import { run, get, handleError } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
-// エラーありのプログラム(async/await)
 const main = async () => {
   await run(
     db,

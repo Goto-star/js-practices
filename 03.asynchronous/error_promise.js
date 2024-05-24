@@ -3,7 +3,6 @@ import { run, get, handleError } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
-// エラーありのプログラム(promise)
 run(
   db,
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
