@@ -65,7 +65,7 @@ export default class MemoApp {
 
     if (!memos) return;
     memos.forEach((memo) => {
-      console.log(`${memo.content.split("\n")[0]}`);
+      console.log(memo.content.split("\n")[0]);
     });
   }
 
