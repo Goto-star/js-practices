@@ -16,8 +16,12 @@ try {
   await run(db, "INSERT INTO books (title) VALUES (?)", "Book1");
   console.log(insertResult.id);
 } catch (err) {
-  if (err.message.includes("UNIQUE constraint failed")) {
+  if (!(err instanceof Error)) {
+    console.log("エラーオブジェクトではありません");
+  } else if (err.message.includes("UNIQUE constraint failed")) {
     console.log(err.message);
+  } else {
+    console.log("エラーが発生しました");
   }
 }
 
@@ -25,8 +29,12 @@ try {
   const row = await get(db, "SELECT id, title FROM book");
   console.log(`ID = ${row.id}, Title = ${row.title}`);
 } catch (err) {
-  if (err.message.includes("no such table")) {
+  if (!(err instanceof Error)) {
+    console.log("エラーオブジェクトではありません");
+  } else if (err.message.includes("no such table")) {
     console.log(err.message);
+  } else {
+    console.log("エラーが発生しました");
   }
 }
 
