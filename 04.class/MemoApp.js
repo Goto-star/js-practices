@@ -28,25 +28,36 @@ class MemoApp {
     }
   }
 
+  async #getInput() {
+    return new Promise((resolve, reject) => {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+
+      const lines = [];
+      rl.on("line", (input) => {
+        lines.push(input);
+      });
+
+      rl.on("close", async () => {
+        const content = lines.join("\n");
+        if (content) {
+          resolve(content);
+        } else {
+          reject("メモが空です");
+        }
+      });
+    });
+  }
+
   async #addMemo() {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    const lines = [];
-    rl.on("line", (input) => {
-      lines.push(input);
-    });
-
-    rl.on("close", async () => {
-      const content = lines.join("\n");
-      if (content) {
-        await this.db.insertMemo(content);
-      } else {
-        console.log("メモが空です");
-      }
-    });
+    try {
+      const content = await this.#getInput();
+      await this.db.insertMemo(content);
+    } catch (empty_warning) {
+      console.log(empty_warning);
+    }
   }
 
   async #listMemos() {
