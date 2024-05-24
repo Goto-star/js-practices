@@ -8,7 +8,7 @@ run(
   db,
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
 )
-  .then(() => run(db, "INSERT INTO books (title) VALUES (?)", "Book1"))
+  .then(() => run(db, "INSERT INTO book (title) VALUES (?)", "Book1"))
   .then((insertResult) => {
     console.log(insertResult.id);
   })
@@ -17,7 +17,7 @@ run(
     return Promise.resolve();
   })
   .then(() => {
-    return get(db, "SELECT id, title FROM books");
+    return get(db, "SELECT iid, title FROM books");
   })
   .then((row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);

@@ -25,7 +25,7 @@ const main = async () => {
   }
 
   try {
-    const row = await get(db, "SELECT iid, title FROM books");
+    const row = await get(db, "SELECT id, title FROM book");
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
     if (err.message.includes("no such table")) {
