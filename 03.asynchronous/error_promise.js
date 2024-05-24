@@ -14,11 +14,8 @@ run(
   })
   .catch((err) => {
     handleError(err);
-    return Promise.resolve();
   })
-  .then(() => {
-    return get(db, "SELECT iid, title FROM books");
-  })
+  .then(() => get(db, "SELECT iid, title FROM books"))
   .then((row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   })
