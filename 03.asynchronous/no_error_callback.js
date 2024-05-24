@@ -11,7 +11,7 @@ db.run(
         "SELECT id, title FROM books WHERE id = ?",
         this.lastID,
         (_, row) => {
-          console.log(row.id, row.title);
+          console.log(`ID = ${row.id}, Title = ${row.title}`);
           db.run("DROP TABLE books");
         },
       );
