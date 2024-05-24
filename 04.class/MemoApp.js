@@ -79,7 +79,7 @@ class MemoApp {
         type: "list",
         name: "selectedMemoId",
         message: "Choose a memo you want to see:",
-        choices: choices,
+        choices,
       },
     ]);
 
@@ -99,7 +99,7 @@ class MemoApp {
         type: "list",
         name: "selectDeleteMemoId",
         message: "Choose a memo you want to delete:",
-        choices: choices,
+        choices,
       },
     ]);
 
