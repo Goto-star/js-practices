@@ -26,8 +26,16 @@ class MemoDatabase {
     await this.db.run("INSERT INTO memos (content) VALUES (?)", content);
   }
 
-  getAllMemos() {
-    return this.db.all("SELECT id, content FROM memos ORDER BY id DESC");
+  async getAllMemos() {
+    const memos = await this.db.all(
+      "SELECT id, content FROM memos ORDER BY id DESC",
+    );
+
+    if (memos.length === 0) {
+      console.error("メモが空です");
+      return;
+    }
+    return memos;
   }
 
   getMemo(id) {
