@@ -15,6 +15,7 @@ class MemoApp {
     }
     switch (args[0]) {
       case "-l":
+        console.log(args[0]);
         this.#listMemos();
         break;
       case "-r":
@@ -83,8 +84,8 @@ class MemoApp {
       },
     ]);
 
-    const fullMemo = await this.db.getMemo(answer.selectedMemoId);
-    console.log(fullMemo.content);
+    const memo = await this.db.getMemo(answer.selectedMemoId);
+    console.log(memo.content);
   }
 
   async #deleteMemo() {
