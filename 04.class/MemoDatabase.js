@@ -2,9 +2,7 @@ import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 import dedent from "dedent";
 
-export default MemoDatabase;
-
-class MemoDatabase {
+export default class MemoDatabase {
   constructor(filename) {
     this.filename = filename;
     this.db = null;

@@ -1,9 +1,7 @@
 import readline from "readline";
 import inquirer from "inquirer";
 
-export default MemoApp;
-
-class MemoApp {
+export default class MemoApp {
   constructor(db) {
     this.db = db;
   }
