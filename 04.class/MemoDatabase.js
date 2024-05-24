@@ -2,6 +2,8 @@ import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 import dedent from "dedent";
 
+export default MemoDatabase;
+
 class MemoDatabase {
   constructor(filename) {
     this.filename = filename;
@@ -46,5 +48,3 @@ class MemoDatabase {
     await this.db.run("DELETE FROM memos WHERE id = ?", id);
   }
 }
-
-export default MemoDatabase;

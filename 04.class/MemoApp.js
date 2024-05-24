@@ -1,6 +1,8 @@
 import readline from "readline";
 import inquirer from "inquirer";
 
+export default MemoApp;
+
 class MemoApp {
   constructor(db) {
     this.db = db;
@@ -110,5 +112,3 @@ class MemoApp {
     await this.db.deleteMemo(answer.selectDeleteMemoId);
   }
 }
-
-export default MemoApp;
