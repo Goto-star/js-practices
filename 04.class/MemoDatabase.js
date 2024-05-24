@@ -26,12 +26,12 @@ class MemoDatabase {
     await this.db.run("INSERT INTO memos (content) VALUES (?)", content);
   }
 
-  async getAllMemos() {
+  getAllMemos() {
     return this.db.all("SELECT id, content FROM memos ORDER BY id DESC");
   }
 
-  async getMemo(id) {
-    return await this.db.get("SELECT content FROM memos WHERE id = ?", [id]);
+  getMemo(id) {
+    return this.db.get("SELECT content FROM memos WHERE id = ?", [id]);
   }
 
   async deleteMemo(id) {
