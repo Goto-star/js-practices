@@ -7,6 +7,6 @@ import MemoDatabase from "./MemoDatabaseClass.js";
   const db = new MemoDatabase("memos.db");
   await db.init();
 
-  const app = new Memo(db);
-  app.run();
+  const memo = new Memo(db);
+  memo.run();
 })();
