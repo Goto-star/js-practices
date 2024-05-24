@@ -30,17 +30,16 @@ class MemoApp {
 
   async #getInput() {
     return new Promise((resolve, reject) => {
+      const lines = [];
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
         terminal: false,
       });
 
-      const lines = [];
       rl.on("line", (input) => {
         lines.push(input);
       });
-
       rl.on("close", async () => {
         const content = lines.join("\n");
         if (content.trim() !== "") {
@@ -63,6 +62,7 @@ class MemoApp {
 
   async #listMemos() {
     const memos = await this.db.getAllMemos();
+
     if (memos.length === 0) {
       console.log("メモが空です");
       return;
@@ -78,7 +78,6 @@ class MemoApp {
       name: memo.content.split("\n")[0],
       value: memo.id,
     }));
-
     const answer = await inquirer.prompt([
       {
         type: "list",
@@ -94,15 +93,10 @@ class MemoApp {
 
   async #deleteMemo() {
     const memos = await this.db.getAllMemos();
-    if (memos.length === 0) {
-      console.log("メモが空です");
-      return;
-    }
     const choices = memos.map((memo) => ({
       name: memo.content.split("\n")[0],
       value: memo.id,
     }));
-
     const answer = await inquirer.prompt([
       {
         type: "list",
@@ -112,6 +106,10 @@ class MemoApp {
       },
     ]);
 
+    if (memos.length === 0) {
+      console.log("メモが空です");
+      return;
+    }
     await this.db.deleteMemo(answer.selectDeleteMemoId);
   }
 }
