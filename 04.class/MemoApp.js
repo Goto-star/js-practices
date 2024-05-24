@@ -1,7 +1,7 @@
 import readline from "readline";
 import inquirer from "inquirer";
 
-class Memo {
+class MemoApp {
   constructor(db) {
     this.db = db; // データベース接続オブジェクトの受け取り
   }
@@ -96,4 +96,4 @@ class Memo {
   }
 }
 
-export default Memo;
+export default MemoApp;
