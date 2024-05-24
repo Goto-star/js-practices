@@ -78,13 +78,13 @@ class MemoApp {
       {
         type: "list",
         name: "selectedMemoId",
-        message: "Choose a note you want to see:",
+        message: "Choose a memo you want to see:",
         choices: choices,
       },
     ]);
 
     const fullMemo = await this.db.getMemo(answer.selectedMemoId);
-    console.log(`${fullMemo.content}`);
+    console.log(fullMemo.content);
   }
 
   async #deleteMemo() {
