@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import Memo from "./MemoClass.js";
 import MemoDatabase from "./MemoDatabaseClass.js";
+import Memo from "./MemoClass.js";
 
 const db = new MemoDatabase("memos.db");
 await db.init();
