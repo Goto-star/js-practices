@@ -1,5 +1,6 @@
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
+import dedent from "dedent";
 
 class MemoDatabase {
   constructor(filename) {
@@ -13,7 +14,7 @@ class MemoDatabase {
       driver: sqlite3.Database,
     });
 
-    await this.db.run(`
+    await this.db.run(dedent`
       CREATE TABLE IF NOT EXISTS memos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         content TEXT NOT NULL
