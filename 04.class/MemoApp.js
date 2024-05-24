@@ -42,7 +42,7 @@ class MemoApp {
 
       rl.on("close", async () => {
         const content = lines.join("\n");
-        if (content) {
+        if (content.trim() !== "") {
           resolve(content);
         } else {
           reject("メモが空です");
