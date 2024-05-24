@@ -3,11 +3,11 @@ import inquirer from "inquirer";
 
 class MemoApp {
   constructor(db) {
-    this.db = db; // データベース接続オブジェクトの受け取り
+    this.db = db;
   }
 
   async run() {
-    const args = process.argv.slice(2); // コマンドライン引数を取得
+    const args = process.argv.slice(2);
 
     if (args.length === 0) {
       this.addMemo();

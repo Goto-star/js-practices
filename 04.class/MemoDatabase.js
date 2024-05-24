@@ -3,18 +3,16 @@ import { open } from "sqlite";
 
 class MemoDatabase {
   constructor(filename) {
-    this.filename = filename; // データベースファイルの名前
-    this.db = null; // データベース接続オブジェクトを初期化
+    this.filename = filename;
+    this.db = null;
   }
 
   async init() {
-    // データベース接続を開く
     this.db = await open({
       filename: this.filename,
       driver: sqlite3.Database,
     });
 
-    // データベースが存在しない場合は作成
     await this.db.run(`
       CREATE TABLE IF NOT EXISTS memos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
