@@ -15,7 +15,7 @@ const run = (db, stmt, params = []) => {
 
 const get = (db, stmt, params = []) => {
   return new Promise((resolve, reject) => {
-    db.get(stmt, params, function (err, row) {
+    db.get(stmt, params, (err, row) => {
       if (err) {
         reject(err);
       } else {
