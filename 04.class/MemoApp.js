@@ -78,13 +78,13 @@ class MemoApp {
     const answer = await inquirer.prompt([
       {
         type: "list",
-        name: "selectedMemoId",
+        name: "memoIdToDelete",
         message: "Choose a memo you want to see:",
         choices,
       },
     ]);
 
-    const memo = await this.db.getMemo(answer.selectedMemoId);
+    const memo = await this.db.getMemo(answer.memoIdToDelete);
     console.log(memo.content);
   }
 
