@@ -5,32 +5,20 @@ const db = new sqlite3.Database(":memory:");
 db.run(
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   () => {
-    insertRecord();
+    db.run("INSERT INTO books (title) VALUES (?)", "Book1", function (err) {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log(this.lastID);
+      }
+      db.get("SELECT id, title FROM books", (err, row) => {
+        if (err) {
+          console.error(err.message);
+        } else {
+          console.log(row.id, row.title);
+        }
+        db.run("DROP TABLE books");
+      });
+    });
   },
 );
-
-const insertRecord = () => {
-  db.run("INSERT INTO book (title) VALUES (?)", "Book1", function (err) {
-    if (err) {
-      console.error(err.message);
-    } else {
-      console.log(this.lastID);
-    }
-    getRecord();
-  });
-};
-
-const getRecord = () => {
-  db.get("SELECT iid, title FROM books", function (err, row) {
-    if (err) {
-      console.error(err.message);
-    } else {
-      console.log(`ID = ${row.id}, Title = ${row.title}`);
-    }
-    deleteTable();
-  });
-};
-
-const deleteTable = () => {
-  db.run("DROP TABLE books");
-};
