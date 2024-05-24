@@ -10,25 +10,25 @@ class MemoApp {
     const args = process.argv.slice(2);
 
     if (args.length === 0) {
-      this.addMemo();
+      this.#addMemo();
       return;
     }
     switch (args[0]) {
       case "-l":
-        this.listMemos();
+        this.#listMemos();
         break;
       case "-r":
-        this.readMemo();
+        this.#readMemo();
         break;
       case "-d":
-        this.deleteMemo();
+        this.#deleteMemo();
         break;
       default:
         console.log("不明なオプションです");
     }
   }
 
-  async addMemo() {
+  async #addMemo() {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -49,14 +49,14 @@ class MemoApp {
     });
   }
 
-  async listMemos() {
+  async #listMemos() {
     const memos = await this.db.getAllMemos();
     memos.forEach((memo) => {
       console.log(`${memo.content.split("\n")[0]}`);
     });
   }
 
-  async readMemo() {
+  async #readMemo() {
     const memos = await this.db.getAllMemos();
     const choices = memos.map((memo) => ({
       name: memo.content.split("\n")[0],
@@ -76,7 +76,7 @@ class MemoApp {
     console.log(`${fullMemo.content}`);
   }
 
-  async deleteMemo() {
+  async #deleteMemo() {
     const memos = await this.db.getAllMemos();
     const choices = memos.map((memo) => ({
       name: memo.content.split("\n")[0],
