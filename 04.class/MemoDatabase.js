@@ -27,7 +27,7 @@ class MemoDatabase {
   }
 
   async getAllMemos() {
-    return await this.db.all("SELECT id, content FROM memos");
+    return this.db.all("SELECT id, content FROM memos ORDER BY id DESC");
   }
 
   async getMemo(id) {
