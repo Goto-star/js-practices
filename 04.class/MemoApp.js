@@ -15,7 +15,6 @@ class MemoApp {
     }
     switch (args[0]) {
       case "-l":
-        console.log(args[0]);
         this.#listMemos();
         break;
       case "-r":
@@ -34,6 +33,7 @@ class MemoApp {
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
+        terminal: false,
       });
 
       const lines = [];
