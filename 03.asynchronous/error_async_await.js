@@ -2,6 +2,7 @@ import sqlite3 from "sqlite3";
 import { run, get } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
+
 await run(
   db,
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
