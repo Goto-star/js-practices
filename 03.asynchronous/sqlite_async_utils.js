@@ -1,4 +1,4 @@
-const run = (db, stmt, params = []) => {
+export const run = (db, stmt, params = []) => {
   return new Promise((resolve, reject) => {
     db.run(stmt, params, function (err) {
       if (err) {
@@ -13,7 +13,7 @@ const run = (db, stmt, params = []) => {
   });
 };
 
-const get = (db, stmt, params = []) => {
+export const get = (db, stmt, params = []) => {
   return new Promise((resolve, reject) => {
     db.get(stmt, params, (err, row) => {
       if (err) {
@@ -24,5 +24,3 @@ const get = (db, stmt, params = []) => {
     });
   });
 };
-
-export { run, get };
