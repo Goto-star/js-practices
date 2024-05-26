@@ -31,7 +31,7 @@ export default class MemoDatabase {
   }
 
   getMemo(id) {
-    return this.db.get("SELECT content FROM memos WHERE id = ?", [id]);
+    return this.db.get("SELECT content FROM memos WHERE id = ?", id);
   }
 
   async deleteMemo(id) {
