@@ -89,13 +89,13 @@ export default class MemoApp {
     const answer = await inquirer.prompt([
       {
         type: "list",
-        name: "memoIdToDelete",
+        name: "selectedMemoId",
         message: "Choose a memo you want to see:",
         choices,
       },
     ]);
 
-    const memo = await this.db.getMemo(answer.memoIdToDelete);
+    const memo = await this.db.getMemo(answer.selectedMemoId);
     console.log(memo.content);
   }
 
@@ -113,12 +113,12 @@ export default class MemoApp {
     const answer = await inquirer.prompt([
       {
         type: "list",
-        name: "selectDeleteMemoId",
+        name: "memoIdToDelete",
         message: "Choose a memo you want to delete:",
         choices,
       },
     ]);
 
-    await this.db.deleteMemo(answer.selectDeleteMemoId);
+    await this.db.deleteMemo(answer.memoIdToDelete);
   }
 }
