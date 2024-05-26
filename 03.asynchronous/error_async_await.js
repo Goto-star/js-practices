@@ -3,35 +3,39 @@ import { run, get } from "./sqlite_async_utils.js";
 
 const db = new sqlite3.Database(":memory:");
 
-await run(
-  db,
-  "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
-);
-
 try {
-  const result = await run(db, "INSERT INTO book (title) VALUES (?)", "Book1");
-  console.log(result.lastID);
-} catch (err) {
-  if (err instanceof Error && err.message.includes("no such table")) {
-    console.error(err.message);
-  } else if (err instanceof Error) {
-    console.error("予期しないエラーが発生しました:", err.message, err.stack);
-  } else {
-    console.error("エラーオブジェクトではありません:", err);
-  }
-}
+  await run(
+    db,
+    "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
+  );
 
-try {
-  const row = await get(db, "SELECT iid, title FROM books");
-  console.log(`ID = ${row.id}, Title = ${row.title}`);
-} catch (err) {
-  if (err instanceof Error && err.message.includes("no such column")) {
-    console.error(err.message);
-  } else if (err instanceof Error) {
-    console.error("予期しないエラーが発生しました:", err.message, err.stack);
-  } else {
-    console.error("エラーオブジェクトではありません:", err);
+  try {
+    const result = await run(
+      db,
+      "INSERT INTO book (title) VALUES (?)",
+      "Book1",
+    );
+    console.log(result.lastID);
+  } catch (err) {
+    if (err instanceof Error && err.message.includes("no such table")) {
+      console.error(err.message);
+    } else {
+      throw err;
+    }
   }
-}
 
-await run(db, "DROP TABLE books");
+  try {
+    const row = await get(db, "SELECT iid, title FROM books");
+    console.log(`ID = ${row.id}, Title = ${row.title}`);
+  } catch (err) {
+    if (err instanceof Error && err.message.includes("no such column")) {
+      console.error(err.message);
+    } else {
+      throw err;
+    }
+  }
+} catch (err) {
+  console.error("上位のエラーハンドリングでキャッチされた例外:", err.message);
+} finally {
+  await run(db, "DROP TABLE books");
+}
