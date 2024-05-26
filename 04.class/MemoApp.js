@@ -55,8 +55,12 @@ export default class MemoApp {
     try {
       const content = await this.#getInput();
       await this.db.insertMemo(content);
-    } catch (empty_warning) {
-      console.log(empty_warning);
+    } catch (err) {
+      if (err.message === "メモが未入力です") {
+        console.error(err.message);
+      } else {
+        console.error("エラーが発生しました");
+      }
     }
   }
 
