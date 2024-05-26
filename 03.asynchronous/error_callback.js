@@ -15,7 +15,7 @@ db.run(
         if (err) {
           console.error(err.message);
         } else {
-          console.log(row.id, row.title);
+          console.log(`ID = ${row.id}, Title = ${row.title}`);
         }
         db.run("DROP TABLE books");
       });
