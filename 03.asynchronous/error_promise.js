@@ -12,7 +12,7 @@ run(
     console.log(result.lastID);
   })
   .catch((err) => {
-    console.log(err.message);
+    console.error(err.message);
   })
   .then(() => get(db, "SELECT iid, title FROM books"))
   .then((row) => {
