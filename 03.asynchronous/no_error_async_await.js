@@ -17,4 +17,5 @@ const row = await get(
   result.lastID,
 );
 console.log(`ID = ${row.id}, Title = ${row.title}`);
+
 await run(db, "DROP TABLE books");
