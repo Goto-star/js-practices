@@ -9,8 +9,12 @@ run(
 )
   .then(() => run(db, "INSERT INTO books (title) VALUES (?)", "Book1"))
   .then((insertResult) => {
-    console.log(insertResult.id);
-    return get(db, "SELECT id, title FROM books WHERE id = ?", insertResult.id);
+    console.log(insertResult.lastID);
+    return get(
+      db,
+      "SELECT id, title FROM books WHERE id = ?",
+      insertResult.lastID,
+    );
   })
   .then((row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);

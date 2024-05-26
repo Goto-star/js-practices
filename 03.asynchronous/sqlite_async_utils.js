@@ -5,7 +5,7 @@ export const run = (db, stmt, params = []) => {
         reject(err);
       } else {
         resolve({
-          id: this.lastID,
+          lastID: this.lastID,
           changes: this.changes,
         });
       }

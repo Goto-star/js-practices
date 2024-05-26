@@ -13,12 +13,12 @@ const insertResult = await run(
   "INSERT INTO books (title) VALUES (?)",
   "Book1",
 );
-console.log(insertResult.id);
+console.log(insertResult.lastID);
 
 const row = await get(
   db,
   "SELECT id, title FROM books WHERE id = ?",
-  insertResult.id,
+  insertResult.lastID,
 );
 console.log(`ID = ${row.id}, Title = ${row.title}`);
 await run(db, "DROP TABLE books");

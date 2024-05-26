@@ -14,7 +14,7 @@ try {
     "INSERT INTO book (title) VALUES (?)",
     "Book1",
   );
-  console.log(insertResult.id);
+  console.log(insertResult.lastID);
 } catch (err) {
   if (!(err instanceof Error)) {
     console.log("エラーオブジェクトではありません");
