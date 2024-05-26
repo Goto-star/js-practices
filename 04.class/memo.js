@@ -6,5 +6,5 @@ import MemoApp from "./MemoApp.js";
 const db = new MemoDatabase("memos.db");
 await db.init();
 
-const memo = new MemoApp(db);
-memo.run();
+const memoApp = new MemoApp(db);
+memoApp.run();
