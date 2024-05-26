@@ -18,5 +18,5 @@ run(
   })
   .then((row) => {
     console.log(`ID = ${row.id}, Title = ${row.title}`);
-    run(db, "DROP TABLE books");
+    return run(db, "DROP TABLE books");
   });
