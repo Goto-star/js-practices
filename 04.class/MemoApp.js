@@ -1,4 +1,4 @@
-import readline from "readline";
+import readline from "readline/promises";
 import inquirer from "inquirer";
 
 export default class MemoApp {
@@ -28,27 +28,26 @@ export default class MemoApp {
     }
   }
 
-  #getInput() {
-    return new Promise((resolve, reject) => {
-      const lines = [];
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        terminal: false,
-      });
-
-      rl.on("line", (input) => {
-        lines.push(input);
-      });
-      rl.on("close", () => {
-        const content = lines.join("\n");
-        if (content.trim() !== "") {
-          resolve(content);
-        } else {
-          reject(new Error("メモが未入力です"));
-        }
-      });
+  async #getInput() {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+      terminal: false,
     });
+
+    const lines = [];
+    for await (const line of rl) {
+      lines.push(line);
+    }
+
+    rl.close;
+
+    const content = lines.join("\n");
+    if (content.trim() !== "") {
+      return content;
+    } else {
+      throw new Error("メモが未入力です");
+    }
   }
 
   async #addMemo() {
