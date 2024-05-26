@@ -45,7 +45,7 @@ export default class MemoApp {
         if (content.trim() !== "") {
           resolve(content);
         } else {
-          reject("メモが空です");
+          reject(new Error("入力してください"));
         }
       });
     });
