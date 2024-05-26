@@ -28,7 +28,7 @@ export default class MemoDatabase {
 
   async getAllMemos() {
     const memos = await this.db.all(
-      "SELECT id, content FROM memos ORDER BY id DESC",
+      "SELECT id, content FROM memos ORDER BY id ASC",
     );
 
     if (memos.length === 0) {
