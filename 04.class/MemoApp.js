@@ -63,7 +63,10 @@ export default class MemoApp {
   async #listMemos() {
     const memos = await this.db.getAllMemos();
 
-    if (!memos) return;
+    if (memos.length === 0) {
+      console.error("メモが空です");
+      return "";
+    }
     memos.forEach((memo) => {
       console.log(memo.content.split("\n")[0]);
     });
@@ -72,7 +75,10 @@ export default class MemoApp {
   async #readMemo() {
     const memos = await this.db.getAllMemos();
 
-    if (!memos) return;
+    if (memos.length === 0) {
+      console.error("メモが空です");
+      return "";
+    }
     const choices = memos.map((memo) => ({
       name: memo.content.split("\n")[0],
       value: memo.id,
@@ -93,7 +99,10 @@ export default class MemoApp {
   async #deleteMemo() {
     const memos = await this.db.getAllMemos();
 
-    if (!memos) return;
+    if (memos.length === 0) {
+      console.error("メモが空です");
+      return;
+    }
     const choices = memos.map((memo) => ({
       name: memo.content.split("\n")[0],
       value: memo.id,
