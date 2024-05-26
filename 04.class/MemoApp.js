@@ -6,25 +6,33 @@ export default class MemoApp {
     this.db = db;
   }
 
-  run() {
+  async run() {
     const args = process.argv.slice(2);
 
-    if (args.length === 0) {
-      this.#addMemo();
-      return;
-    }
-    switch (args[0]) {
-      case "-l":
-        this.#listMemos();
-        break;
-      case "-r":
-        this.#readMemo();
-        break;
-      case "-d":
-        this.#deleteMemo();
-        break;
-      default:
-        console.log("不明なオプションです");
+    try {
+      if (args.length === 0) {
+        await this.#addMemo();
+        return;
+      }
+      switch (args[0]) {
+        case "-l":
+          await this.#listMemos();
+          break;
+        case "-r":
+          await this.#readMemo();
+          break;
+        case "-d":
+          await this.#deleteMemo();
+          break;
+        default:
+          console.log("不明なオプションです");
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error("エラーが発生しました: ", err.message);
+      } else {
+        console.error("予期しないエラーが発生しました: ", err);
+      }
     }
   }
 
@@ -49,7 +57,7 @@ export default class MemoApp {
     if (content.trim() !== "") {
       return content;
     } else {
-      throw new Error("メモが未入力です");
+      throw new Error("未入力です");
     }
   }
 
@@ -58,10 +66,10 @@ export default class MemoApp {
       const content = await this.#getInput();
       await this.db.insertMemo(content);
     } catch (err) {
-      if (err.message === "メモが未入力です") {
+      if (err instanceof Error && err.message === "未入力です") {
         console.error(err.message);
       } else {
-        console.error("エラーが発生しました");
+        throw err;
       }
     }
   }
