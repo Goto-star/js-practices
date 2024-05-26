@@ -40,7 +40,10 @@ export default class MemoApp {
       lines.push(line);
     }
 
-    rl.close;
+    process.on("SIGINT", () => {
+      rl.close();
+      process.exit();
+    });
 
     const content = lines.join("\n");
     if (content.trim() !== "") {
