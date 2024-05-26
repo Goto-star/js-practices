@@ -8,17 +8,13 @@ await run(
   "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
 );
 
-const insertResult = await run(
-  db,
-  "INSERT INTO books (title) VALUES (?)",
-  "Book1",
-);
-console.log(insertResult.lastID);
+const result = await run(db, "INSERT INTO books (title) VALUES (?)", "Book1");
+console.log(result.lastID);
 
 const row = await get(
   db,
   "SELECT id, title FROM books WHERE id = ?",
-  insertResult.lastID,
+  result.lastID,
 );
 console.log(`ID = ${row.id}, Title = ${row.title}`);
 await run(db, "DROP TABLE books");

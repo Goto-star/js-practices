@@ -9,12 +9,8 @@ await run(
 );
 
 try {
-  const insertResult = await run(
-    db,
-    "INSERT INTO book (title) VALUES (?)",
-    "Book1",
-  );
-  console.log(insertResult.lastID);
+  const result = await run(db, "INSERT INTO book (title) VALUES (?)", "Book1");
+  console.log(result.lastID);
 } catch (err) {
   if (!(err instanceof Error)) {
     console.log("エラーオブジェクトではありません");
