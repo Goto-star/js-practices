@@ -28,7 +28,7 @@ export default class MemoApp {
     }
   }
 
-  async #getInput() {
+  #getInput() {
     return new Promise((resolve, reject) => {
       const lines = [];
       const rl = readline.createInterface({
@@ -40,7 +40,7 @@ export default class MemoApp {
       rl.on("line", (input) => {
         lines.push(input);
       });
-      rl.on("close", async () => {
+      rl.on("close", () => {
         const content = lines.join("\n");
         if (content.trim() !== "") {
           resolve(content);
