@@ -35,7 +35,11 @@ try {
     }
   }
 } catch (err) {
-  console.error("上位のエラーハンドリングでキャッチされた例外:", err.message);
+  if (err instanceof Error) {
+    console.error("エラーが発生しました: ", err.message);
+  } else {
+    console.error("予期しないエラーが発生しました: ", err);
+  }
 } finally {
   await run(db, "DROP TABLE books");
 }
