@@ -66,7 +66,7 @@ export default class MemoApp {
       const content = await this.#getInput();
       await this.db.insertMemo(content);
     } catch (err) {
-      if (err instanceof Error && err.message === "未入力です") {
+      if (err.message === "未入力です") {
         console.error(err.message);
       } else {
         throw err;
