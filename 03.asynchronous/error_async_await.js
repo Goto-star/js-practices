@@ -17,7 +17,7 @@ try {
     );
     console.log(result.lastID);
   } catch (err) {
-    if (err instanceof Error && err.message.includes("no such table")) {
+    if (err && err.message && err.message.includes("no such table")) {
       console.error(err.message);
     } else {
       throw err;
