@@ -6,23 +6,23 @@ export default class MemoApp {
     this.db = db;
   }
 
-  async run() {
+  run() {
     const args = process.argv.slice(2);
 
     try {
       if (args.length === 0) {
-        await this.#addMemo();
+        this.#addMemo();
         return;
       }
       switch (args[0]) {
         case "-l":
-          await this.#listMemos();
+          this.#listMemos();
           break;
         case "-r":
-          await this.#readMemo();
+          this.#readMemo();
           break;
         case "-d":
-          await this.#deleteMemo();
+          this.#deleteMemo();
           break;
         default:
           console.log("不明なオプションです");
