@@ -28,7 +28,7 @@ try {
     const row = await get(db, "SELECT iid, title FROM books");
     console.log(`ID = ${row.id}, Title = ${row.title}`);
   } catch (err) {
-    if (err instanceof Error && err.message.includes("no such column")) {
+    if (err && err.message && err.message.includes("no such column")) {
       console.error(err.message);
     } else {
       throw err;
