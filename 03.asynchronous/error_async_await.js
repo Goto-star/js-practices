@@ -13,7 +13,8 @@ try {
   console.log(result.lastID);
 } catch (err) {
   if (
-    err?.code === "SQLITE_ERROR" &&
+    err.code === "SQLITE_ERROR" &&
+    err instanceof Error &&
     /^SQLITE_ERROR: no such table: \w+$/.test(err?.message)
   ) {
     console.error(err.message);
@@ -27,7 +28,8 @@ try {
   console.log(`ID = ${row.id}, Title = ${row.title}`);
 } catch (err) {
   if (
-    err?.code === "SQLITE_ERROR" &&
+    err.code === "SQLITE_ERROR" &&
+    err instanceof Error &&
     /^SQLITE_ERROR: no such column: \w+$/.test(err?.message)
   ) {
     console.error(err.message);
