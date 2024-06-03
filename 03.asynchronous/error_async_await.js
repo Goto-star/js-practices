@@ -14,7 +14,7 @@ try {
 } catch (err) {
   if (
     err?.code === "SQLITE_ERROR" &&
-    /^no such table: \w+$/.test(err?.message?.substring(14))
+    /^SQLITE_ERROR: no such table: \w+$/.test(err?.message)
   ) {
     console.error(err.message);
   } else {
@@ -28,7 +28,7 @@ try {
 } catch (err) {
   if (
     err?.code === "SQLITE_ERROR" &&
-    /^no such column: \w+$/.test(err?.message?.substring(14))
+    /^SQLITE_ERROR: no such column: \w+$/.test(err?.message)
   ) {
     console.error(err.message);
   } else {
