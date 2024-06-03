@@ -9,30 +9,22 @@ export default class MemoApp {
   run() {
     const args = process.argv.slice(2);
 
-    try {
-      if (args.length === 0) {
-        this.#addMemo();
-        return;
-      }
-      switch (args[0]) {
-        case "-l":
-          this.#listMemos();
-          break;
-        case "-r":
-          this.#readMemo();
-          break;
-        case "-d":
-          this.#deleteMemo();
-          break;
-        default:
-          console.log("不明なオプションです");
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        console.error("エラーが発生しました: ", err.message);
-      } else {
-        console.error("予期しないエラーが発生しました: ", err);
-      }
+    if (args.length === 0) {
+      this.#addMemo();
+      return;
+    }
+    switch (args[0]) {
+      case "-l":
+        this.#listMemos();
+        break;
+      case "-r":
+        this.#readMemo();
+        break;
+      case "-d":
+        this.#deleteMemo();
+        break;
+      default:
+        console.log("不明なオプションです");
     }
   }
 
@@ -66,7 +58,7 @@ export default class MemoApp {
       const content = await this.#getInput();
       await this.db.insertMemo(content);
     } catch (err) {
-      if (err && err.message && err.message === "未入力です") {
+      if (err instanceof Error && err?.message === "未入力です") {
         console.error(err.message);
       } else {
         throw err;
